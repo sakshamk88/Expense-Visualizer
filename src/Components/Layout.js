@@ -1,29 +1,25 @@
 import React from "react";
 import Header from "./Header/Header";
-import Sidebar from "./Sidebar/Sidebar";
 import Dashboard from "./Dashboard/Dashboard";
-
 import Footer from "./Footer/Footer";
-import { Row, Col } from "react-bootstrap";
+import Home from "./Home/Home";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./Layout.css";
-import "./Sidebar/Sidebar.css";
 
-const layout = (props) => {
+const layout = () => {
   return (
-    <div>
-      <Header />
-      <div className="container-fluid ">
-        <Row>
-          <Col md={2} className="border sidebar" bg={"dark"}>
-            <Sidebar />
-          </Col>
-          <Col md={10} className="text-center border">
-            <Dashboard />
-          </Col>
-        </Row>
+    <Router>
+      <div>
+        <Header />
+
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/dashboard" component={Dashboard} />
+        </Switch>
+
+        <Footer />
       </div>
-      <Footer />
-    </div>
+    </Router>
   );
 };
 
